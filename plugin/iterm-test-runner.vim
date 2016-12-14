@@ -1,13 +1,13 @@
 function! s:ITermTestRunnerLine()
   let currentLine = line(".")
   let currentFile = expand("%")
-  silent exec "silent !/usr/local/bin/hello ".currentFile." ".currentLine
+  silent exec "silent !/usr/local/bin/test-runner.sh ".currentFile." ".currentLine
   silent exec 'redraw!'
 endfunction
 
 function! s:ITermTestRunnerFile()
   let currentFile = expand("%")
-  silent exec "silent !/usr/local/bin/hello ".currentFile
+  silent exec "silent !/usr/local/bin/test-runner.sh ".currentFile
   silent exec 'redraw!'
 endfunction
 
