@@ -21,5 +21,5 @@ endfunction
 command! -nargs=* TTRF call s:ITermTestRunnerFile()
 command! -nargs=* TTRL call s:ITermTestRunnerLine()
 
-nmap <leader>t :call <SID>ITermTestRunnerLine()<cr>
-nmap <leader>T :call <SID>ITermTestRunnerFile()<cr>
+nnoremap <leader>t :call <SID>ITermTestRunnerLine()<cr>
+nnoremap <leader>T :call <SID>ITermTestRunnerFile()<cr>
