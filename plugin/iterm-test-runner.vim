@@ -1,25 +1,20 @@
-let g:ccmd = "silent !/usr/bin/osascript << EOF\n"
-let g:osacmd = "tell application \"iTerm2\"\n
-  \  tell first session of current tab of current window\n
-  \    write text command\n
-  \  end tell\n
-  \end tell\n
-  \EOF\n"
+let g:ccmd = "!/usr/bin/osascript "
+let g:osacmd = " -e 'tell application \"iTerm2\" to tell first session of current tab of current window to write text command'"
 
 function! s:ITermTestRunnerLine()
-  let osavar = "set command to \"rspec ".expand("%").":".line(".")."\"\n"
+  let osavar = "-e 'set command to \"rspec ".expand("%").':'.line(".")."\"'"
   silent exec g:ccmd.osavar.g:osacmd
   silent exec 'redraw!'
 endfunction
 
 function! s:ITermTestRunnerFile()
-  let osavar = "set command to \"rspec ".expand("%")."\"\n"
+  let osavar = "-e 'set command to \"rspec ".expand("%")."\"'"
   silent exec g:ccmd.osavar.g:osacmd
   silent exec 'redraw!'
 endfunction
 
-command! -nargs=* TTRF call s:ITermTestRunnerFile()
-command! -nargs=* TTRL call s:ITermTestRunnerLine()
+command! -nargs=* RspecTestFile call s:ITermTestRunnerFile()
+command! -nargs=* RspecTestLine call s:ITermTestRunnerLine()
 
 nnoremap <leader>t :call <SID>ITermTestRunnerLine()<cr>
 nnoremap <leader>T :call <SID>ITermTestRunnerFile()<cr>
